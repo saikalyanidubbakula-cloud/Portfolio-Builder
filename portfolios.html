@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolios</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-image: url("home\ bg.jpeg");
+
+        }
+
+        header {
+            background-color: transparent;
+            color: rgb(5, 26, 104);
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            background: none;
+            background-color: transparent;
+            box-shadow: none;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .portfolios-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .portfolio-link {
+            display: block;
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: #1e3c72;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            
+            
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2);
+        }
+        p{
+    
+            color: rgb(3, 34, 94);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Portfolios</h1>
+    </header>
+
+    <div class="portfolios-container">
+        <a href="portfolio1.html" class="portfolio-link">View Portfolio 1</a>
+        <a href="portfolio2.html" class="portfolio-link">View Portfolio 2</a>
+        <a href="portfolio3.html" class="portfolio-link">View Portfolio 3</a>
+        <a href="portfolio4.html" class="portfolio-link">View Portfolio 4</a>
+        <a href="portfolio5.html" class="portfolio-link">View Portfolio 5</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Portfolio Builder. All rights reserved.</p>
+    </footer>
+</body>
+</html>

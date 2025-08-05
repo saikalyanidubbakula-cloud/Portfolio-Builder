@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= portfolio.name %> | Court Conqueror</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Impact&family=Poppins:wght@300;700&display=swap">
+    <style>
+        :root {
+            --primary: #2e8b57; /* Court green */
+            --secondary: #191970; /* Midnight blue */
+            --accent: #ffa500; /* Orange spark */
+            --text-light: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill-opacity=".2"%3E%3Crect x="40" y="40" width="20" height="20" fill="%232e8b57"/%3E%3Crect x="20" y="20" width="20" height="20" fill="%23ffa500"/%3E%3C/svg%3E'), #1c2526;
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1510906594795-77b6d9b7a91e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            opacity: 0.18;
+            z-index: -1;
+        }
+        .page {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0;
+            background: var(--secondary);
+            clip-path: polygon(0 0, 100% 5%, 100% 95%, 0 100%);
+        }
+        header {
+            padding: 3rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            text-align: center;
+        }
+        header h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        .download-btn {
+            display: inline-block;
+            margin: 2rem auto;
+            padding: 1rem 3rem;
+            background: var(--accent);
+            border: none;
+            color: var(--secondary);
+            font-family: 'Impact', sans-serif;
+            font-size: 1.3rem;
+            text-decoration: none;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: var(--primary);
+            clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+        }
+        .content {
+            padding: 3rem;
+            background: var(--text-light);
+            color: var(--secondary);
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+        }
+        .profile img {
+            width: 220px;
+            height: 220px;
+            border: none;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            transition: all 0.3s ease;
+        }
+        .profile img:hover {
+            clip-path: circle(50% at 50% 50%);
+        }
+        .profile h2 {
+            font-family: 'Impact', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(46, 139, 87, 0.1);
+            clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+        }
+        .section h3 {
+            font-family: 'Impact', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent);
+        }
+        .project-files .file-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .project-files img,
+        .project-files video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact a:hover {
+            color: var(--primary);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: var(--text-light);
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+        }
+        .pdf-hide {
+            display: none !important;
+        }
+        @media (max-width: 768px) {
+            .page, .content, .section, footer { clip-path: none; }
+            .project-files img, .project-files video { clip-path: none; }
+            .profile img { clip-path: none; border-radius: 50%; }
+        }
+        @media print {
+            body, body::before { background: none; }
+            .page, .content, .section, footer { clip-path: none; }
+            .download-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1><%= portfolio.name %>: Court Conqueror</h1>
+            <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+        </header>
+        <div class="content">
+            <div class="profile">
+                <img src="<%= portfolio.profile_picture || '/Uploads/placeholder.jpg' %>" alt="<%= portfolio.name %>'s Profile">
+                <h2><%= portfolio.name %></h2>
+                <p><span class="label">Profession:</span> <%= portfolio.profession %></p>
+                <p><span class="label">Bio:</span> <%= portfolio.bio || 'Owning the court, every play.' %></p>
+            </div>
+            <% if (portfolio.sport_type) { %>
+    <div class="section">
+        <h3>Sport Type</h3>
+        <p><%= portfolio.sport_type %></p>
+    </div>
+<% } %>
+
+<% if (portfolio.achievements) { %>
+    <div class="section">
+        <h3>Achievements</h3>
+        <p><%= portfolio.achievements %></p>
+    </div>
+<% } %>
+
+            
+            </div>
+            <div class="section projects">
+                <h3>Highlights</h3>
+                <% if (portfolio.project_files) { %>
+                    <div class="project-files">
+                        <h3>Game Gallery</h3>
+                        <div class="file-container">
+                            <% portfolio.project_files.split(',').forEach(file => { %>
+                                <% if (file.match(/\.(jpg|png|gif)$/i)) { %>
+                                    <img src="<%= file %>" alt="Highlight" loading="lazy">
+                                <% } else if (file.match(/\.(mp4|webm)$/i)) { %>
+                                    <video src="<%= file %>" controls loading="lazy"></video>
+                                <% } else if (file.match(/\.(mp3|wav)$/i)) { %>
+                                    <audio src="<%= file %>" controls></audio>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <div class="section contact">
+                <h3>Contact</h3>
+                <p><span class="label">Email:</span> <a href="mailto:<%= portfolio.contact_email %>"><%= portfolio.contact_email %></a></p>
+                <% if (portfolio.phone) { %>
+                    <p><span class="label">Phone:</span> <%= portfolio.phone %></p>
+                <% } %>
+                <% if (portfolio.linkedin) { %>
+                    <p><span class="label">LinkedIn:</span> <a href="<%= portfolio.linkedin %>" target="_blank"><%= portfolio.linkedin %></a></p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <footer><p>© 2025 <%= portfolio.name %> | Court Legend</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const button = document.querySelector('.download-btn');
+            button.classList.add('pdf-hide');
+            const element = document.querySelector('.page');
+            const opt = {
+                margin: 0.5,
+                filename: '<%= portfolio.name.replace(/\s+/g, "_") %>_portfolio.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: window.devicePixelRatio || 2,
+                    dpi: 300,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: true,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight,
+                    style: '*',
+                    ignoreElements: (el) => el.classList.contains('pdf-hide')
+                },
+                jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).toPdf().get('pdf')
+                .then((pdf) => {
+                    button.classList.remove('pdf-hide');
+                    pdf.save();
+                }).catch((error) => {
+                    button.classList.remove('pdf-hide');
+                    console.error('PDF generation failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>

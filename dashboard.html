@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3b82f6; /* Vibrant blue */
+            --secondary: #1e293b; /* Dark slate */
+            --accent: #facc15; /* Warm yellow */
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill-opacity=".05"%3E%3Ccircle cx="50" cy="50" r="25" fill="%233b82f6"/%3E%3Ccircle cx="75" cy="25" r="15" fill="%23facc15"/%3E%3C/svg%3E'), linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--secondary), #334155);
+            color: var(--text-light);
+            position: fixed;
+            padding: 2rem 1.5rem;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            transition: width 0.3s ease;
+        }
+        .sidebar h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            margin: 0.5rem 0;
+        }
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .sidebar ul li a i {
+            font-size: 1.2rem;
+        }
+        .sidebar ul li a:hover {
+            background: var(--primary);
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 3rem;
+            min-height: 100vh;
+            background: rgba(248, 250, 252, 0.9);
+            border-radius: 0 20px 20px 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+        .main-content p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transition: height 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .card:hover::before {
+            height: 10px;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        .card p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+        .toggle-btn {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1000;
+            background: var(--primary);
+            color: var(--text-light);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+                padding: 1rem;
+            }
+            .sidebar h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+            .sidebar ul li a {
+                justify-content: center;
+                padding: 0.5rem;
+                font-size: 0;
+            }
+            .sidebar ul li a i {
+                font-size: 1.5rem;
+            }
+            .main-content {
+                margin-left: 80px;
+                padding: 2rem;
+                border-radius: 0;
+            }
+            .toggle-btn {
+                display: block;
+            }
+            .sidebar.expanded {
+                width: 250px;
+            }
+            .sidebar.expanded ul li a {
+                font-size: 1rem;
+                justify-content: flex-start;
+            }
+        }
+        @media (max-width: 480px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .main-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Welcome, User!</h1>
+        <p>Your hub for managing projects, tasks, and more.</p>
+        <div class="cards">
+            <div class="card">
+                <h3>Projects</h3>
+                <p>5 Active Projects</p>
+            </div>
+            <div class="card">
+                <h3>Tasks</h3>
+                <p>12 Pending Tasks</p>
+            </div>
+            <div class="card">
+                <h3>Notifications</h3>
+                <p>3 New Messages</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>

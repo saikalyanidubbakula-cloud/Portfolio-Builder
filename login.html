@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+         body {
+            
+            background-image: url("loginbgfix11.jpeg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .login-container {
+           
+            
+            margin-left: 60px; 
+            background: rgb(213, 225, 233);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 420px;
+            height: auto;
+            color: rgb(65, 79, 84);
+            font-style: normal;
+        }
+
+
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: #064860;
+        }
+        
+            p {
+            text-align: center;
+            color: rgb(43, 56, 62);
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        h2 { margin-bottom: 1.5rem; color: #333; }
+        .input-group { text-align: left; margin-bottom: 1rem; }
+        label { font-weight: 600; font-size: 14px; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; outline: none; font-size: 14px; }
+        input:focus { border-color: #1e3c72; }
+        .btn { width: 100%; padding: 10px; background: #1e3c72; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: 0.3s ease; }
+        .btn:hover { background: #2a5298; }
+        .signup-text { margin-top: 10px; font-size: 14px; }
+        .signup-text a { color: #1e3c72; text-decoration: none; font-weight: 600; }
+        .signup-text a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Your Portfolio</h2> 
+        <form method="POST" action="/log">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="pwd" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <p class="signup-text">Don't have an account? <a href="register.html">Sign up</a></p>
+        </form>
+    </div>
+</body>
+</html>

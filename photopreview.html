@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Templates</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-image: url("photopreview.jpg"); padding: 20px; }
+        h1 { text-align: center; color: #6610f2; margin-bottom: 20px; }
+        .template-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .template-card { background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .template-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 5px; }
+        .template-card a { text-decoration: none; color: #6610f2; font-weight: bold; }
+        .template-card a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Your Photographer Portfolio Templates</h1>
+    <div class="template-grid">
+        <div class="template-card">
+            
+            <p><a href="/photo1">Template 1</a></p>
+        </div>
+        <div class="template-card">
+            
+            <p><a href="/photo2">Template 2</a></p>
+        </div>
+        <div class="template-card">
+            
+            <p><a href="/photo3">Template 3</a></p>
+        </div>
+        <div class="template-card">
+            
+            <p><a href="/photo4">Template 4</a></p>
+        </div>
+        <div class="template-card">
+            
+            <p><a href="/photo5">Template 5</a></p>
+        </div>
+    </div>
+</body>
+</html>

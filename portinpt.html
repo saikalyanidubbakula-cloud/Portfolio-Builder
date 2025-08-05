@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background-image: url(inpt.jpg);
+            background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+        header {
+            width: 100%;
+            background-color: transparent;
+            color: rgb(14, 14, 14);
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+            background-image: url("inptcont.jpg");
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            
+        }
+        select, input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #506d8d;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portfolio Builder</h1>
+    </header>
+
+    <div class="container" id="professionSection">
+        <h2>Select Your Profession</h2>
+        <p>Choose your profession to generate a tailored portfolio.</p>
+        <select id="profession" onchange="showForm()">
+            <option value="">Select a profession</option>
+            <option value="developer">Software Developer</option>
+            <option value="photographer">Photographer</option>
+            <option value="fashion">Fashion Designer</option>
+            <option value="sports">Sports Person</option>
+        </select>
+    </div>
+
+    <div class="container" id="portfolioFormSection" style="display: none;">
+        <h2>Fill in Your Portfolio Information</h2>
+        <form id="portfolioForm" enctype="multipart/form-data" method="POST" action="/submit-portfolio">
+            <input type="hidden" name="profession" id="professionInput">
+            <label for="profilePicture">Upload Profile Picture:</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <label for="bio">Short Bio:</label>
+            <textarea id="bio" name="bio" placeholder="Write a short bio about yourself" rows="4" required></textarea>
+            <div id="dynamicFields"></div>
+            <label for="contact">Contact Email:</label>
+            <input type="email" id="contact" name="contact" required>
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone">
+            <label for="linkedin">LinkedIn Profile URL:</label>
+            <input type="url" id="linkedin" name="linkedin">
+            <label for="github">GitHub Profile URL:</label>
+            <input type="url" id="github" name="github">
+            <label for="projectFiles">Upload Project Files (Images, Videos, Audio):</label>
+            <input type="file" id="projectFiles" name="projectFiles" multiple accept="image/*,video/*,audio/*">
+            <button type="submit">Generate Portfolio</button>
+        </form>
+    </div>
+
+    <script>
+        function showForm() {
+            let profession = document.getElementById("profession").value;
+            let dynamicFields = document.getElementById("dynamicFields");
+            document.getElementById("portfolioFormSection").style.display = "block";
+            document.getElementById("professionInput").value = profession;
+            dynamicFields.innerHTML = "";
+
+            if (profession === "developer") {
+                dynamicFields.innerHTML += '<label for="technicalSkills">Technical Skills (comma separated):</label>';
+                dynamicFields.innerHTML += '<input type="text" id="technicalSkills" name="technicalSkills" required>';
+                dynamicFields.innerHTML += '<label for="projects">Projects (comma separated):</label>';
+                dynamicFields.innerHTML += '<input type="text" id="projects" name="projects" required>';
+            } else if (profession === "photographer") {
+                dynamicFields.innerHTML += '<label for="cameraSkills">Camera & Editing Skills:</label>';
+                dynamicFields.innerHTML += '<input type="text" id="cameraSkills" name="cameraSkills" required>';
+                dynamicFields.innerHTML += '<label for="portfolioLink">Portfolio Website:</label>';
+                dynamicFields.innerHTML += '<input type="url" id="portfolioLink" name="portfolioLink" required>';
+            } else if (profession === "fashion") {
+                dynamicFields.innerHTML += '<label for="designStyles">Design Styles (comma separated):</label>';
+                dynamicFields.innerHTML += '<input type="text" id="designStyles" name="designStyles" required>';
+                dynamicFields.innerHTML += '<label for="fashionShows">Fashion Shows Participated:</label>';
+                dynamicFields.innerHTML += '<input type="text" id="fashionShows" name="fashionShows">';
+            } else if (profession === "sports") {
+                dynamicFields.innerHTML += '<label for="sportType">Sport Type:</label>';
+                dynamicFields.innerHTML += '<input type="text" id="sportType" name="sportType" required>';
+                dynamicFields.innerHTML += '<label for="achievements">Achievements (comma separated):</label>';
+                dynamicFields.innerHTML += '<input type="text" id="achievements" name="achievements">';
+            }
+        }
+    </script>
+</body>
+</html>
