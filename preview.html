@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-header h2 {
+            margin-bottom: 5px;
+        }
+
+        .portfolio-header p {
+            font-style: italic;
+            color: gray;
+        }
+
+        .portfolio-content {
+            margin-bottom: 20px;
+        }
+
+        .portfolio-content .projects {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .projects .project {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 8px;
+            width: 45%;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .projects .project img,
+        .projects .project video {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .projects .project audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .template-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .template-container .template {
+            width: 18%;
+            background-color: #007bff;
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .template-container .template:hover {
+            background-color: #0056b3;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Portfolio Preview</h1>
+            <p>Here are five different templates. Choose one to finalize your portfolio.</p>
+        </header>
+
+        <!-- Portfolio Header -->
+        <div class="portfolio-header">
+            <h2 id="userName">John Doe</h2>
+            <p id="userBio">Software Developer with a passion for building innovative applications.</p>
+        </div>
+
+        <!-- Template Selection -->
+        <div class="template-container">
+            <div class="template" onclick="showTemplate(1)">Template 1</div>
+            <div class="template" onclick="showTemplate(2)">Template 2</div>
+            <div class="template" onclick="showTemplate(3)">Template 3</div>
+            <div class="template" onclick="showTemplate(4)">Template 4</div>
+            <div class="template" onclick="showTemplate(5)">Template 5</div>
+        </div>
+
+        <!-- Template Content -->
+        <div id="template1" class="portfolio-template hide">
+            <h3>Template 1</h3>
+            <div class="portfolio-content">
+                <h4>Projects</h4>
+                <div class="projects" id="projectList1"></div>
+            </div>
+        </div>
+
+        <div id="template2" class="portfolio-template hide">
+            <h3>Template 2</h3>
+            <div class="portfolio-content">
+                <h4>Projects</h4>
+                <div class="projects" id="projectList2"></div>
+            </div>
+        </div>
+
+        <div id="template3" class="portfolio-template hide">
+            <h3>Template 3</h3>
+            <div class="portfolio-content">
+                <h4>Projects</h4>
+                <div class="projects" id="projectList3"></div>
+            </div>
+        </div>
+
+        <div id="template4" class="portfolio-template hide">
+            <h3>Template 4</h3>
+            <div class="portfolio-content">
+                <h4>Projects</h4>
+                <div class="projects" id="projectList4"></div>
+            </div>
+        </div>
+
+        <div id="template5" class="portfolio-template hide">
+            <h3>Template 5</h3>
+            <div class="portfolio-content">
+                <h4>Projects</h4>
+                <div class="projects" id="projectList5"></div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button id="downloadPDFBtn">Download as PDF</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle template preview and project data
+        window.onload = function () {
+            // Get portfolio data from URL (could be set from previous form)
+            const urlParams = new URLSearchParams(window.location.search);
+            const userName = urlParams.get('name');
+            const userBio = urlParams.get('bio');
+            const userProjects = JSON.parse(urlParams.get('projects') || '[]'); // Example format of projects
+
+            // Set portfolio user info
+            document.getElementById('userName').textContent = userName || 'John Doe';
+            document.getElementById('userBio').textContent = userBio || 'Short bio goes here...';
+
+            // Generate project list dynamically for all templates
+            const projectLists = [
+                document.getElementById('projectList1'),
+                document.getElementById('projectList2'),
+                document.getElementById('projectList3'),
+                document.getElementById('projectList4'),
+                document.getElementById('projectList5')
+            ];
+
+            userProjects.forEach((project) => {
+                const projectDiv = document.createElement('div');
+                projectDiv.classList.add('project');
+                projectDiv.innerHTML = `
+                    <h4>${project.title}</h4>
+                    ${project.type === 'image' ? `<img src="${project.url}" alt="${project.title}">` : ''}
+                    ${project.type === 'video' ? `<video controls src="${project.url}"></video>` : ''}
+                    ${project.type === 'audio' ? `<audio controls src="${project.url}"></audio>` : ''}
+                `;
+                projectLists.forEach(list => list.appendChild(projectDiv.cloneNode(true)));
+            });
+        };
+
+        // Function to show a selected template
+        function showTemplate(templateNumber) {
+            // Hide all templates
+            document.querySelectorAll('.portfolio-template').forEach(template => template.classList.add('hide'));
+
+            // Show selected template
+            document.getElementById('template' + templateNumber).classList.remove('hide');
+        }
+
+        // Function to download portfolio as PDF
+        document.getElementById('downloadPDFBtn').addEventListener('click', function () {
+            const doc = new jsPDF();
+            doc.html(document.querySelector('.container'), {
+                callback: function (doc) {
+                    doc.save('portfolio.pdf');
+                },
+                margin: [10, 10, 10, 10],
+                x: 10,
+                y: 10
+            });
+        });
+    </script>
+
+    <!-- Include jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+
+</html>

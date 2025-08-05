@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= portfolio.name %> | Mountain Pulse</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Barlow:wght@300;600&display=swap">
+    <style>
+        :root {
+            --primary: #3a5a40; /* Forest green */
+            --secondary: #d9d9d9; /* Light stone */
+            --accent: #d68c45; /* Rust orange */
+            --text-dark: #2b2b2b;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Barlow', sans-serif;
+        }
+        body {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill-opacity=".1"%3E%3Cpath d="M60 20L90 80H30z" fill="%23d68c45"/%3E%3Cpath d="M60 40L80 80H40z" fill="%233a5a40"/%3E%3C/svg%3E'), #f5f5f5;
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1501555088652-021faa106b1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        .page {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background: var(--secondary);
+            border: 5px solid var(--primary);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--primary);
+            color: var(--secondary);
+            border-radius: 20px 20px 0 0;
+        }
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .download-btn {
+            display: inline-block;
+            margin: 2rem auto;
+            padding: 1rem 3rem;
+            background: var(--accent);
+            border: 3px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .download-btn:hover {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--accent);
+        }
+        .content {
+            padding: 3rem;
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem;
+            border: 3px solid var(--accent);
+            border-radius: 20px;
+        }
+        .profile img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 6px double var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .profile h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.7rem;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: #fff;
+            border: 2px dashed var(--accent);
+            border-radius: 15px;
+        }
+        .section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.1rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .project-files .file-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-files img,
+        .project-files video {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .contact a:hover {
+            color: var(--accent);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 0 0 20px 20px;
+        }
+        .pdf-hide {
+            display: none !important;
+        }
+        @media (max-width: 768px) {
+            .profile img { width: 200px; height: 200px; }
+            .project-files img, .project-files video { height: 200px; }
+            header h1 { font-size: 2.8rem; }
+        }
+        @media print {
+            body, body::before { background: none; }
+            .page { border: none; box-shadow: none; }
+            .download-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1><%= portfolio.name %>: Mountain Pulse</h1>
+            <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+        </header>
+        <div class="content">
+            <div class="profile">
+                <img src="<%= portfolio.profile_picture || '/Uploads/placeholder.jpg' %>" alt="<%= portfolio.name %>'s Profile">
+                <h2><%= portfolio.name %></h2>
+                <p><span class="label">Profession:</span> <%= portfolio.profession %></p>
+                <p><span class="label">Bio:</span> <%= portfolio.bio || 'Conquering peaks, defying limits.' %></p>
+            </div>
+            <% if (portfolio.sport_type) { %>
+    <div class="section">
+        <h3>Sport Type</h3>
+        <p><%= portfolio.sport_type %></p>
+    </div>
+<% } %>
+
+<% if (portfolio.achievements) { %>
+    <div class="section">
+        <h3>Achievements</h3>
+        <p><%= portfolio.achievements %></p>
+    </div>
+<% } %>
+
+
+            <div class="section projects">
+                <h3>Highlights</h3>
+                <% if (portfolio.project_files) { %>
+                    <div class="project-files">
+                        <h3>Adventure Gallery</h3>
+                        <div class="file-container">
+                            <% portfolio.project_files.split(',').forEach(file => { %>
+                                <% if (file.match(/\.(jpg|png|gif)$/i)) { %>
+                                    <img src="<%= file %>" alt="Highlight" loading="lazy">
+                                <% } else if (file.match(/\.(mp4|webm)$/i)) { %>
+                                    <video src="<%= file %>" controls loading="lazy"></video>
+                                <% } else if (file.match(/\.(mp3|wav)$/i)) { %>
+                                    <audio src="<%= file %>" controls></audio>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+            <div class="section contact">
+                <h3>Contact</h3>
+                <p><span class="label">Email:</span> <a href="mailto:<%= portfolio.contact_email %>"><%= portfolio.contact_email %></a></p>
+                <% if (portfolio.phone) { %>
+                    <p><span class="label">Phone:</span> <%= portfolio.phone %></p>
+                <% } %>
+                <% if (portfolio.linkedin) { %>
+                    <p><span class="label">LinkedIn:</span> <a href="<%= portfolio.linkedin %>" target="_blank"><%= portfolio.linkedin %></a></p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <footer><p>© 2025 <%= portfolio.name %> | Endurance Elite</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const button = document.querySelector('.download-btn');
+            button.classList.add('pdf-hide');
+            const element = document.querySelector('.page');
+            const opt = {
+                margin: 0.5,
+                filename: '<%= portfolio.name.replace(/\s+/g, "_") %>_portfolio.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: window.devicePixelRatio || 2,
+                    dpi: 300,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: true,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight,
+                    style: '*',
+                    ignoreElements: (el) => el.classList.contains('pdf-hide')
+                },
+                jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).toPdf().get('pdf')
+                .then((pdf) => {
+                    button.classList.remove('pdf-hide');
+                    pdf.save();
+                }).catch((error) => {
+                    button.classList.remove('pdf-hide');
+                    console.error('PDF generation failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>

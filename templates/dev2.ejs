@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= portfolio.name %> | Cosmic Developer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap">
+    <style>
+        :root {
+            --primary: #00eaff;
+            --secondary: #ff007a;
+            --bg-dark: #0a0a23;
+            --text-light: #e0e0ff;
+            --text-dark: #1a1a3a;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Ccircle cx="10" cy="10" r="1" fill="%23ffffff22"/%3E%3Ccircle cx="90" cy="90" r="2" fill="%23ffffff22"/%3E%3Ccircle cx="50" cy="50" r="1.5" fill="%23ffffff22"/%3E%3C/svg%3E'), var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(10, 10, 35, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 234, 255, 0.2);
+        }
+        header {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 15px 15px 0 0;
+        }
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .download-btn {
+            display: inline-block;
+            margin: 1rem auto;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            text-decoration: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .download-btn:hover {
+            background: var(--primary);
+            color: var(--text-dark);
+            box-shadow: 0 0 15px var(--primary);
+        }
+        .content {
+            padding: 2rem;
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(255, 0, 122, 0.5);
+            transition: all 0.3s;
+        }
+        .profile img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary);
+            border-radius: 10px;
+        }
+        .section h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .section p {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .project-files .file-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-files img,
+        .project-files video {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            transition: all 0.3s;
+        }
+        .project-files img:hover,
+        .project-files video:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 0 15px var(--secondary);
+        }
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .contact a:hover {
+            color: var(--secondary);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--secondary);
+            border-radius: 0 0 15px 15px;
+            font-size: 0.9rem;
+        }
+        .pdf-hide {
+            display: none !important;
+        }
+        @media (max-width: 768px) {
+            .page { margin: 1rem; padding: 1rem; }
+            header h1 { font-size: 2rem; }
+            .profile img { width: 120px; height: 120px; }
+        }
+        @media print {
+            body { background: none; }
+            .page { box-shadow: none; }
+            .download-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1><%= portfolio.name %>: Cosmic Developer</h1>
+            <button class="download-btn" onclick="downloadPDF()">Download as PDF</button>
+        </header>
+        <div class="content">
+            <div class="profile">
+                <img src="<%= portfolio.profile_picture || '/Uploads/placeholder.jpg' %>" alt="<%= portfolio.name %>'s Profile">
+                <h2><%= portfolio.name %></h2>
+                <p><span class="label">Profession:</span> <%= portfolio.profession %></p>
+                <p><span class="label">Bio:</span> <%= portfolio.bio || 'Exploring the universe through code.' %></p>
+            </div>
+            <div class="section skills">
+    <h3>Technical Skills</h3>
+    <p><%= portfolio.technical_skills %></p>
+</div>
+<% if (portfolio.projects) { %>
+    <div class="section">
+        <h3>Projects</h3>
+        <p><%= portfolio.projects %></p>
+    </div>
+<% } %>
+
+<% if (portfolio.project_files) { %>
+    <div class="section">
+        <h3>Project Media</h3>
+        <div class="file-container">
+            <% portfolio.project_files.split(',').forEach(file => { %>
+                <% if (file.match(/\.(jpg|png|gif)$/i)) { %>
+                    <img src="<%= file %>" alt="Project Image" loading="lazy">
+                <% } else if (file.match(/\.(mp4|webm)$/i)) { %>
+                    <video src="<%= file %>" controls loading="lazy"></video>
+                <% } else if (file.match(/\.(mp3|wav)$/i)) { %>
+                    <audio src="<%= file %>" controls></audio>
+                <% } %>
+            <% }); %>
+        </div>
+    </div>
+<% } %>
+          
+            <div class="section contact">
+                <h3>Connect</h3>
+                <p><span class="label">Email:</span> <a href="mailto:<%= portfolio.contact_email %>"><%= portfolio.contact_email %></a></p>
+                <% if (portfolio.phone) { %>
+                    <p><Cardinal>Phone:</span> <%= portfolio.phone %></p>
+                <% } %>
+                <% if (portfolio.linkedin) { %>
+                    <p><span class="label">LinkedIn:</span> <a href="<%= portfolio.linkedin %>" target="_blank"><%= portfolio.linkedin %></a></p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <footer><p>© 2025 <%= portfolio.name %> | Code Beyond the Stars</p></footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            const button = document.querySelector('.download-btn');
+            button.classList.add('pdf-hide');
+            const element = document.querySelector('.page');
+            const opt = {
+                margin: 0.5,
+                filename: '<%= portfolio.name.replace(/\s+/g, "_") %>_portfolio.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: window.devicePixelRatio || 2,
+                    dpi: 300,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: true,
+                    width: element.scrollWidth,
+                    height: element.scrollHeight,
+                    style: '*',
+                    ignoreElements: (el) => el.classList.contains('pdf-hide')
+                },
+                jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).toPdf().get('pdf')
+                .then((pdf) => {
+                    button.classList.remove('pdf-hide');
+                    pdf.save();
+                }).catch((error) => {
+                    button.classList.remove('pdf-hide');
+                    console.error('PDF generation failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>

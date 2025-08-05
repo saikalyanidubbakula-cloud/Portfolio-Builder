@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Builder - Home</title>
+    <style>
+        /* Import Poppins font to match other pages */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+       
+            body {
+    background-image: url("home\ bg.jpeg");
+    
+}
+
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #1e3c72, #2a5298); /* Gradient like login/register */
+            color: white;
+            text-align: center;
+            padding: 30px 20px; /* Slightly more padding */
+            position: relative;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Shadow like other containers */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px; /* Space below title */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px; /* More spacing for elegance */
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem; /* Slightly larger for readability */
+            font-weight: 600; /* Bold like sidebar links */
+            transition: color 0.3s ease; /* Smooth hover transition */
+        }
+
+        nav ul li a:hover {
+            color: #e3f2fd; /* Light blue hover effect */
+            text-decoration: underline;
+        }
+
+        /* Login/Register Buttons */
+        .auth-buttons {
+            position: absolute;
+            top: 20px; /* Adjusted for balance */
+            right: 30px; /* More spacing from edge */
+        }
+
+        .auth-buttons button {
+            background: white;
+            color: #1e3c72; /* Matches button text color */
+            border: none;
+            padding: 10px 15px; /* Slightly larger padding */
+            margin-left: 15px; /* More spacing between buttons */
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 5px; /* Rounded like other buttons */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: all 0.3s ease; /* Smooth transition for all changes */
+        }
+
+        .auth-buttons button:hover {
+            background: #2a5298; /* Hover color matches btn hover */
+            color: white;
+            transform: translateY(-2px); /* Slight lift on hover */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px; /* More padding for prominence */
+            background: white; /* White background like feature boxes */
+            margin: 30px auto; /* More margin for breathing room */
+            max-width: 900px; /* Slightly wider */
+            border-radius: 10px; /* Rounded like containers */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: transform 0.3s ease; /* Animation for hover */
+        }
+
+        .hero:hover {
+            transform: scale(1.02); /* Subtle scale-up on hover */
+        }
+
+        .hero h2 {
+            font-size: 2.8rem; /* Larger for emphasis */
+            color: #1e3c72; /* Matches h1/h2 colors */
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.3rem; /* Slightly larger */
+            margin: 15px 0;
+            color: #555; /* Matches feature text */
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1e3c72; /* Matches button color */
+            color: white;
+            padding: 14px 25px; /* Larger padding */
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px; /* Rounded like other buttons */
+            margin-top: 20px; /* More spacing */
+            font-weight: 600;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        .btn:hover {
+            background: #2a5298; /* Hover matches other buttons */
+            transform: translateY(-2px); /* Lift effect */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px; /* More padding */
+            gap: 30px; /* Wider gap for better separation */
+            flex-wrap: wrap; /* Responsive on smaller screens */
+        }
+
+        .feature-box {
+            background: white;
+            padding: 25px; /* More padding */
+            border-radius: 10px; /* Matches card radius */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Matches card shadow */
+            text-align: center;
+            width: 30%; /* Consistent width */
+            min-width: 250px; /* Minimum width for responsiveness */
+            transition: transform 0.3s ease; /* Animation for hover */
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+        }
+
+        .feature-box h3 {
+            font-size: 1.6rem; /* Slightly larger */
+            color: #1e3c72; /* Matches other headings */
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            font-size: 1rem;
+            color: #555; /* Matches dashboard card text */
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background: linear-gradient(to right, #1e3c72, #2a5298); /* Gradient like header */
+            color: white;
+            padding: 20px; /* Slightly more padding */
+            margin-top: 30px; /* More spacing */
+            font-size: 14px;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to Portfolio Builder</h1>
+    <nav>
+        <ul>
+            <li><a href="ho1.html">Home</a></li>
+            <li><a href="about1.html">About</a></li>
+            <li><a href="contacts.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <button id="login-btn">Login</button>
+        <button id="register-btn">Register</button>
+        <button id="logout-btn" style="display: none;">Logout</button>
+    </div>
+</header>
+<section class="hero">
+    <h2>Create Your Professional Portfolio</h2>
+    <p>Build an amazing portfolio tailored to your profession in just a few steps!</p>
+    <a href="portinpt.html" class="btn" id="get-started-btn">Get Started</a>
+</section>
+<section class="features">
+    <div class="feature-box">
+        <h3>Multiple Templates</h3>
+        <p>Choose from various professionally designed templates.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Easy Customization</h3>
+        <p>Fill in your details and generate a personalized portfolio instantly.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Responsive Design</h3>
+        <p>Your portfolio will look great on any device.</p>
+    </div>
+</section>
+<footer>
+    <p>© 2025 Portfolio Builder. All rights reserved.</p>
+</footer>
+<script>
+    function updateAuthButtons(isLoggedIn) {
+        if (isLoggedIn) {
+            document.getElementById('login-btn').style.display = 'none';
+            document.getElementById('register-btn').style.display = 'none';
+            document.getElementById('logout-btn').style.display = 'block';
+        } else {
+            document.getElementById('login-btn').style.display = 'block';
+            document.getElementById('register-btn').style.display = 'block';
+            document.getElementById('logout-btn').style.display = 'none';
+        }
+    }
+    fetch('/check-login')
+        .then(response => response.json())
+        .then(data => updateAuthButtons(data.isLoggedIn))
+        .catch(error => console.error('Error checking login status:', error));
+    document.getElementById('login-btn').onclick = () => window.location.href = 'login.html';
+    document.getElementById('register-btn').onclick = () => window.location.href = 'register.html';
+    document.getElementById('logout-btn').onclick = () => {
+        fetch('/logout')
+            .then(() => {
+                updateAuthButtons(false);
+                alert('You have logged out!');
+                window.location.reload();
+            })
+            .catch(error => console.error('Error logging out:', error));
+    };
+    document.getElementById('get-started-btn').onclick = (event) => {
+        event.preventDefault();
+        fetch('/check-login')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLoggedIn) window.location.href = 'portinpt.html';
+                else alert('Please log in or register to get started!');
+            })
+            .catch(error => {
+                console.error('Error checking login status:', error);
+                alert('Please log in or register to get started!');
+            });
+    };
+</script>
+</body>
+</html>

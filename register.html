@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --secondary: #1e293b; /* Dark slate */
+            --accent: #f59e0b; /* Amber */
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        body {
+background-image: url("loginbgfix11.jpeg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+                       
+           
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1516321310764-8d8c9461b6a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            opacity: 0.08;
+            z-index: -1;
+        }
+        .register-container {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            transition: height 0.3s ease;
+        }
+        .register-container:hover::before {
+            height: 10px;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: left;
+            margin-bottom: 0.3rem;
+        }
+        input {
+            padding: 0.9rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+            background: #ffffff;
+        }
+        input::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+        }
+        button {
+            padding: 1rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        button i {
+            font-size: 0.9rem;
+        }
+        a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        a i {
+            font-size: 0.8rem;
+        }
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 1.5rem;
+                max-width: 100%;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            input, button {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="/reg" method="POST">
+            <label for="uname">Name</label>
+            <input type="text" id="uname" name="uname" placeholder="Enter your name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <label for="pwd">Password</label>
+            <input type="password" id="pwd" name="pwd" placeholder="Enter your password" required>
+            <label for="pwd1">Confirm Password</label>
+            <input type="password" id="pwd1" name="pwd1" placeholder="Confirm your password" required>
+            <button type="submit">Register <i class="fas fa-user-plus"></i></button>
+        </form>
+        <a href="/log">Already have an account? Login <i class="fas fa-arrow-right"></i></a>
+    </div>
+</body>
+</html>

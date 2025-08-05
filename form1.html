@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Input Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .form-container input,
+        .form-container textarea,
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .form-container button:hover {
+            background: #388E3C;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h3 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Fill in Your Portfolio Information</h2>
+        <form id="portfolioForm" action="/form1"  method=POST>
+
+            <div class="profile-section">
+                <div>
+                    <label for="profilePicture">Upload Profile Picture:</label>
+                    <input type="file" id="profilePicture" accept="image/*" required>
+                </div>
+
+                <div class="profile-info">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+
+                    <label for="bio">Short Bio:</label>
+                    <textarea id="bio" placeholder="Write a short bio about yourself" rows="4" required></textarea>
+                </div>
+            </div>
+
+            <label for="technicalSkills">Technical Skills (comma separated):</label>
+            <input type="text" id="technicalSkills" placeholder="e.g., HTML, CSS, JavaScript, Python" required>
+
+            <label for="softSkills">Soft Skills (comma separated):</label>
+            <input type="text" id="softSkills" placeholder="e.g., Communication, Leadership, Teamwork" required>
+
+            <label for="projects">Projects (comma separated):</label>
+            <input type="text" id="projects" placeholder="e.g., Portfolio Website, Blog Site" required>
+
+            <label for="contact">Contact Email:</label>
+            <input type="email" id="contact" placeholder="Your email for contact" required>
+
+            <!-- New Contact Information Section -->
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" placeholder="Enter your phone number">
+
+            <label for="linkedin">LinkedIn Profile URL:</label>
+            <input type="url" id="linkedin" placeholder="e.g., https://www.linkedin.com/in/yourprofile">
+
+            <label for="github">GitHub Profile URL:</label>
+            <input type="url" id="github" placeholder="e.g., https://github.com/yourusername">
+
+            <button type="submit">Generate Portfolio</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("portfolioForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const bio = document.getElementById("bio").value;
+            const technicalSkills = document.getElementById("technicalSkills").value.split(',');
+            const softSkills = document.getElementById("softSkills").value.split(',');
+            const projects = document.getElementById("projects").value.split(',');
+            const contact = document.getElementById("contact").value;
+
+            // Get new contact information
+            const phone = document.getElementById("phone").value;
+            const linkedin = document.getElementById("linkedin").value;
+            const github = document.getElementById("github").value;
+
+            // Get the profile picture file
+            const profilePictureFile = document.getElementById("profilePicture").files[0];
+
+            // If a file is uploaded, we can handle it (e.g., save it to the server and get the URL back)
+            // For now, we can just log it to check
+            if (profilePictureFile) {
+                console.log(profilePictureFile);
+            }
+
+            // Update portfolio content
+            updatePortfolio(name, bio, technicalSkills, softSkills, projects, contact, phone, linkedin, github, profilePictureFile);
+        });
+
+        function updatePortfolio(name, bio, technicalSkills, softSkills, projects, contact, phone, linkedin, github, profilePictureFile) {
+            // Here you would typically send the data to the server and then generate the portfolio
+            // For now, we'll just log the details
+
+            console.log('Profile Picture:', profilePictureFile);
+            console.log('Name:', name);
+            console.log('Bio:', bio);
+            console.log('Technical Skills:', technicalSkills);
+            console.log('Soft Skills:', softSkills);
+            console.log('Projects:', projects);
+            console.log('Contact:', contact);
+            console.log('Phone:', phone);
+            console.log('LinkedIn:', linkedin);
+            console.log('GitHub:', github);
+
+            // Update portfolio content on the page
+            alert(`Portfolio Updated with your Information!`);
+        }
+    </script>
+
+</body>
+</html>
