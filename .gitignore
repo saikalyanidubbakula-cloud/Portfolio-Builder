@@ -1,0 +1,33 @@
+# git add .gitignore
+# git commit -m "Add .gitignore file"
+# git push
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# MySQL dump or credentials (if any)
+*.sql
+*.db
+
+# Build / output
+dist/
+build/
+
+# Runtime files
+*.pid
+*.seed
+
+# Coverage/test
+coverage/
