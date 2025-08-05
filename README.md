@@ -17,8 +17,4 @@ A web-based application that allows users to create, customize, and download pro
 - Database: MySQL
 - Tools: Git, Visual Studio Code, MySQL Workbench
 
-## Installation & Usage
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
